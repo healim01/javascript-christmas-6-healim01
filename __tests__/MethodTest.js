@@ -98,7 +98,7 @@ describe("기능 테스트", () => {
     await app.run();
 
     // then
-    const expected = ["-4,046원"];
+    const expected = ["평일 할인: -4,046원"];
 
     expectLogContains(getOutput(logSpy), expected);
   });
@@ -112,7 +112,21 @@ describe("기능 테스트", () => {
     await app.run();
 
     // then
-    const expected = ["-2,023원"];
+    const expected = ["주말 할인: -2,023원"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
+  test("특별 할인 여부 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["24", "티본스테이크-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["특별 할인: -1,000원"];
 
     expectLogContains(getOutput(logSpy), expected);
   });
