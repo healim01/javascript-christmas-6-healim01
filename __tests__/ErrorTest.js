@@ -47,4 +47,22 @@ describe("예외 테스트", () => {
       expect.stringContaining(INVALID_DATE_MESSAGE)
     );
   });
+
+  test("음료만 주문시 예외 테스트", async () => {
+    // given
+    const INVALID_ORDER_MESSAGE =
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    const INPUTS_TO_END = ["타파스-2"];
+    const logSpy = getLogSpy();
+    mockQuestions(["3", "제로콜라-1", ...INPUTS_TO_END]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(INVALID_ORDER_MESSAGE)
+    );
+  });
 });
