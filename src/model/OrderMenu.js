@@ -1,5 +1,6 @@
 import {
   ALL_MENUS,
+  BADGE,
   DEC_START,
   DESERT_MENU,
   DISCOUNT_AMOUNT,
@@ -90,6 +91,13 @@ class OrderMenu {
       return 25000;
     }
     return 0;
+  }
+
+  getEventBadge(totalDiscount) {
+    if (totalDiscount <= -20000) return BADGE.santa;
+    else if (totalDiscount <= -1000) return BADGE.tree;
+    else if (totalDiscount <= -5000) return BADGE.star;
+    else return NOTHING;
   }
 }
 export default OrderMenu;

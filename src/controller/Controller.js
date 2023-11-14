@@ -30,6 +30,7 @@ class Controller {
     this.#rMenu = {};
     this.#orderMenu = new OrderMenu();
     this.#originPrice = 0;
+    this.#totaldiscount = 0;
   }
   async start() {
     await this.#constomerInfo();
@@ -106,6 +107,7 @@ class Controller {
     this.#checkDiscount();
     this.#showTotalDiscountPrice();
     this.#printTotalPrice();
+    this.#printBadge();
   }
 
   #viewOrder() {
@@ -132,17 +134,17 @@ class Controller {
         this.#rMenu,
         this.#originPrice
       );
-    }
 
-    this.#checkDiscountEvent(discount);
+      this.#checkDiscountEvent(discount);
 
-    this.#totaldiscount = Object.values(discount).reduce(
-      (acc, cur) => acc + cur,
-      0
-    );
+      this.#totaldiscount = Object.values(discount).reduce(
+        (acc, cur) => acc - cur,
+        0
+      );
 
-    if (discount.extraGiftDscount != 0) {
-      this.#originPrice += discount.extraGiftDscount;
+      if (discount.extraGiftDscount != 0) {
+        this.#originPrice += discount.extraGiftDscount;
+      }
     }
 
     if (this.#totaldiscount == 0) {
@@ -175,12 +177,21 @@ class Controller {
   }
 
   #showTotalDiscountPrice() {
-    OutputView.printTotalDiscount(this.#formatPrice(this.#totaldiscount));
+    OutputView.printPrice(
+      MESSAGES.discount,
+      this.#formatPrice(this.#totaldiscount)
+    );
   }
 
   #printTotalPrice() {
-    const totalPrice = this.#originPrice - this.#totaldiscount;
-    OutputView.printTotalPrice(this.#formatPrice(totalPrice));
+    const totalPrice = this.#originPrice + this.#totaldiscount;
+    OutputView.printPrice(MESSAGES.totalPrice, this.#formatPrice(totalPrice));
+  }
+
+  #printBadge() {
+    const badge = this.#orderMenu.getEventBadge(this.#totaldiscount);
+    OutputView.print(MESSAGES.badge);
+    OutputView.print(badge);
   }
 }
 export default Controller;

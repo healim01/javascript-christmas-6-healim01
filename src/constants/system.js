@@ -84,3 +84,9 @@ export const DISCOUNT_EVENT = Object.freeze({
   special: "특별 할인",
   extra: "증정 이벤트",
 });
+
+export const BADGE = Object.freeze({
+  star: "별",
+  tree: "트리",
+  santa: "산타",
+});

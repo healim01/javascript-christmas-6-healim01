@@ -11,5 +11,6 @@ const MESSAGES = Object.freeze({
   discount: "\n<해택 내역>",
   totalDiscount: "\n<총혜택 금액>",
   totalPrice: "\n<할인 후 예상 결제 금액>",
+  badge: "\n<12월 이벤트 배지>",
 });
 export default MESSAGES;
