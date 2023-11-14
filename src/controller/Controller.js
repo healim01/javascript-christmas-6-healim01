@@ -104,6 +104,7 @@ class Controller {
     this.#showOriginalPrice();
     this.#extraGift();
     this.#checkDiscount();
+    this.#showTotalDiscountPrice();
   }
 
   #viewOrder() {
@@ -122,6 +123,7 @@ class Controller {
 
   #checkDiscount() {
     OutputView.print(MESSAGES.discount);
+
     let discount;
     if (this.#originPrice > 10000) {
       discount = this.#orderMenu.discountPrice(
@@ -131,6 +133,23 @@ class Controller {
       );
     }
 
+    this.#checkDiscountEvent(discount);
+
+    this.#totaldiscount = Object.values(discount).reduce(
+      (acc, cur) => acc + cur,
+      0
+    );
+
+    if (discount.extraGiftDscount != 0) {
+      this.#originPrice -= discount.extraGiftDscount;
+    }
+
+    if (this.#totaldiscount == 0) {
+      OutputView.print(NOTHING);
+    }
+  }
+
+  #checkDiscountEvent(discount) {
     if (discount.xmasDiscount != 0) {
       OutputView.printDiscount(DISCOUNT_EVENT.xmas, discount.xmasDiscount);
     }
@@ -152,10 +171,10 @@ class Controller {
     if (discount.extraGiftDscount != 0) {
       OutputView.printDiscount(DISCOUNT_EVENT.extra, discount.extraGiftDscount);
     }
+  }
 
-    if (this.#totaldiscount == 0) {
-      OutputView.print(NOTHING);
-    }
+  #showTotalDiscountPrice() {
+    OutputView.printTotalDiscount(this.#formatPrice(this.#totaldiscount));
   }
 }
 export default Controller;
