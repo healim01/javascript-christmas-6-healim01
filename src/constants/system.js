@@ -64,3 +64,10 @@ export const drink_menu = Object.freeze([
     price: 25000,
   },
 ]);
+
+export const all_menus = [
+  ...appetizer_menu,
+  ...main_menu,
+  ...desert_menu,
+  ...drink_menu,
+];
