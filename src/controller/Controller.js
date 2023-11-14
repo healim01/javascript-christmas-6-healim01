@@ -3,7 +3,7 @@ import { ERROR } from "../constants/error.js";
 import MESSAGES from "../constants/messages.js";
 import { DISCOUNT_EVENT, MAX, MIN, NOTHING } from "../constants/system.js";
 // utils
-import splitStringToArray from "../utils/splitStringtoArray.js";
+import splitStringToArray from "../utils/splitStringToArray.js";
 import {
   isOutOfRange,
   isOnMenu,
