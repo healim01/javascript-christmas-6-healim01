@@ -95,7 +95,7 @@ class OrderMenu {
 
   getEventBadge(totalDiscount) {
     if (totalDiscount <= -20000) return BADGE.santa;
-    else if (totalDiscount <= -1000) return BADGE.tree;
+    else if (totalDiscount <= -10000) return BADGE.tree;
     else if (totalDiscount <= -5000) return BADGE.star;
     else return NOTHING;
   }
