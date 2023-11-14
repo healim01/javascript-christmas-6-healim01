@@ -88,4 +88,18 @@ describe("기능 테스트", () => {
 
     expectLogContains(getOutput(logSpy), expected);
   });
+  test("평일 할인 여부 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["4", "초코케이크-2"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["-4,046원"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
 });
