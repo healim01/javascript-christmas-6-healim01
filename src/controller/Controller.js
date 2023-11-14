@@ -154,25 +154,34 @@ class Controller {
 
   #checkDiscountEvent(discount) {
     if (discount.xmasDiscount != 0) {
-      OutputView.printDiscount(DISCOUNT_EVENT.xmas, discount.xmasDiscount);
+      OutputView.printDiscount(
+        DISCOUNT_EVENT.xmas,
+        this.#formatPrice(discount.xmasDiscount)
+      );
     }
     if (discount.weekDiscount != 0) {
-      OutputView.printDiscount(DISCOUNT_EVENT.week, discount.weekDiscount);
+      OutputView.printDiscount(
+        DISCOUNT_EVENT.week,
+        this.#formatPrice(discount.weekDiscount)
+      );
     }
     if (discount.weekendDiscount != 0) {
       OutputView.printDiscount(
         DISCOUNT_EVENT.weekend,
-        discount.weekendDiscount
+        this.#formatPrice(discount.weekendDiscount)
       );
     }
     if (discount.specialDiscount != 0) {
       OutputView.printDiscount(
         DISCOUNT_EVENT.special,
-        discount.specialDiscount
+        this.#formatPrice(discount.specialDiscount)
       );
     }
     if (discount.extraGiftDscount != 0) {
-      OutputView.printDiscount(DISCOUNT_EVENT.extra, discount.extraGiftDscount);
+      OutputView.printDiscount(
+        DISCOUNT_EVENT.extra,
+        this.#formatPrice(discount.extraGiftDscount)
+      );
     }
   }
 
