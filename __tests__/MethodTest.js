@@ -130,7 +130,7 @@ describe("기능 테스트", () => {
 
     expectLogContains(getOutput(logSpy), expected);
   });
-  test("특별 할인 여부 확인", async () => {
+  test("증정품 할인 여부 확인", async () => {
     // given
     const logSpy = getLogSpy();
     mockQuestions(["25", "티본스테이크-10"]);
@@ -141,6 +141,20 @@ describe("기능 테스트", () => {
 
     // then
     const expected = ["증정 이벤트: -25,000원"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
+  test("없을시 없음 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["1", "타파스-1,제로콜라-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["없음"];
 
     expectLogContains(getOutput(logSpy), expected);
   });
