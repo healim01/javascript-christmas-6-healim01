@@ -6,6 +6,7 @@ import {
   isOnMenu,
   isAllDrink,
   isTooMany,
+  isAlreadyOrder,
 } from "../utils/validator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
@@ -71,6 +72,9 @@ class Controller {
     }
     if (isTooMany(menu)) {
       throw new Error(ERROR.TooMany);
+    }
+    if (isAlreadyOrder(menu)) {
+      throw new Error(ERROR.AlreadyOrder);
     }
   }
 }

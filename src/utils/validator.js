@@ -41,3 +41,16 @@ export const isTooMany = (menuItems) => {
 
   return sum > 20;
 };
+
+export const isAlreadyOrder = (menuItems) => {
+  const menuNames = new Set();
+
+  for (const menuItem of menuItems) {
+    if (menuNames.has(menuItem.name)) {
+      return true;
+    }
+    menuNames.add(menuItem.name);
+  }
+
+  return false;
+};
