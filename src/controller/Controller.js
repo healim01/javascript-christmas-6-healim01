@@ -1,7 +1,7 @@
 import { ERROR } from "../constants/error.js";
 import { max, min } from "../constants/system.js";
 import splitStringToArray from "../utils/splitStringtoArray.js";
-import { isOutOfRange, isValidMenu } from "../utils/validator.js";
+import { isOutOfRange, isOnMenu } from "../utils/validator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 
@@ -24,13 +24,13 @@ class Controller {
   }
 
   async #getDate() {
-    let isValidIDate = false;
+    let isValidDate = false;
 
-    while (!isValidIDate) {
+    while (!isValidDate) {
       try {
         this.#rDate = await InputView.readDate();
         this.#validateDate(this.#rDate);
-        isValidIDate = true;
+        isValidDate = true;
       } catch (error) {
         OutputView.error(error.message);
       }
@@ -44,13 +44,13 @@ class Controller {
   }
 
   async #getMenu() {
-    let isValidIMenu = false;
-    while (!isValidIMenu) {
+    let isValidMenu = false;
+    while (!isValidMenu) {
       try {
         const iMenu = await InputView.readMenu();
         this.#rMenu = splitStringToArray(iMenu);
         this.#validateMenu(this.#rMenu);
-        isValidIMenu = true;
+        isValidMenu = true;
       } catch (error) {
         OutputView.error(error.message);
       }
@@ -58,7 +58,7 @@ class Controller {
   }
 
   #validateMenu(menu) {
-    if (!isValidMenu(menu)) {
+    if (!isOnMenu(menu)) {
       throw new Error(ERROR.InvalidMenu);
     }
   }
