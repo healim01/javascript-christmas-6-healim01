@@ -1,6 +1,6 @@
-import { all_menus, drink_menu } from "../constants/system.js";
+import { ALL_MENUS, DRINK_MENU } from "../constants/system.js";
 
-export const isOutOfRange = (value, min, max) => value < min || value > max;
+export const isOutOfRange = (value, max, min) => value < min || value > max;
 
 export const isNumber = (value) => {
   return isNaN(value);
@@ -8,7 +8,7 @@ export const isNumber = (value) => {
 
 export const isOnMenu = (menuItems) => {
   for (const menuItem of menuItems) {
-    if (!all_menus.some((item) => item.name === menuItem.name)) {
+    if (!ALL_MENUS.some((item) => item.name === menuItem.name)) {
       return false;
     }
   }
@@ -18,7 +18,7 @@ export const isOnMenu = (menuItems) => {
 
 export const isAllDrink = (menuItems) => {
   for (const menuItem of menuItems) {
-    if (!drink_menu.some((item) => item.name === menuItem.name)) {
+    if (!DRINK_MENU.some((item) => item.name === menuItem.name)) {
       return false;
     }
   }
