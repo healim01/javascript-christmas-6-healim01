@@ -7,10 +7,10 @@ import {
   isAllDrink,
   isTooMany,
   isAlreadyOrder,
+  isNumber,
 } from "../utils/validator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import { isNumber } from "../../node_modules/@types/node/ts4.8/util.d";
 
 class Controller {
   #rDate;
@@ -59,7 +59,6 @@ class Controller {
       try {
         const iMenu = await InputView.readMenu();
         this.#rMenu = splitStringToArray(iMenu);
-        console.log(this.#rMenu);
         this.#validateMenu(this.#rMenu);
         isValidMenu = true;
       } catch (error) {

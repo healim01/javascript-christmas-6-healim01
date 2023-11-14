@@ -14,6 +14,10 @@ const all_menus = [
 
 export const isOutOfRange = (value, min, max) => value < min || value > max;
 
+export const isNumber = (value) => {
+  return isNaN(value);
+};
+
 export const isOnMenu = (menuItems) => {
   for (const menuItem of menuItems) {
     if (!all_menus.some((item) => item.name === menuItem.name)) {
@@ -59,6 +63,5 @@ export const isValidInput = (items) => {
   for (const item of items) {
     if (!item.includes("-")) return false;
   }
-  console.log("true");
   return true;
 };
