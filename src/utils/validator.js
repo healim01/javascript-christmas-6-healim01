@@ -32,3 +32,12 @@ export const isAllDrink = (menuItems) => {
   }
   return true;
 };
+
+export const isTooMany = (menuItems) => {
+  let sum = 0;
+  for (const menuItem of menuItems) {
+    sum += menuItem.quantity;
+  }
+
+  return sum > 20;
+};
