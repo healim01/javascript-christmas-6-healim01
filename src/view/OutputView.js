@@ -33,6 +33,10 @@ const OutputView = {
     this.print(gift);
   },
 
+  printDiscount(item, price) {
+    this.print(`${item}: -${price}원`);
+  },
+
   error(error) {
     this.print(error);
   },

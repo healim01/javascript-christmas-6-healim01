@@ -8,5 +8,6 @@ const MESSAGES = Object.freeze({
   printMenu: "\n<주문 메뉴>",
   orginPrice: "\n<할인 전 총주문 금액>",
   extraGift: "\n<증정 메뉴>",
+  discount: "\n<해택 내역>",
 });
 export default MESSAGES;

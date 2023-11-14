@@ -1,6 +1,7 @@
 // constants
 import { ERROR } from "../constants/error.js";
-import { max, min } from "../constants/system.js";
+import MESSAGES from "../constants/messages.js";
+import { DISCOUNT_EVENT, MAX, MIN, NOTHING } from "../constants/system.js";
 // utils
 import splitStringToArray from "../utils/splitStringtoArray.js";
 import {
@@ -22,6 +23,7 @@ class Controller {
   #rMenu;
   #orderMenu;
   #originPrice;
+  #totaldiscount;
 
   constructor() {
     this.#rDate = 0;
@@ -58,7 +60,7 @@ class Controller {
     if (isNumber(date)) {
       throw new Error(ERROR.NotNumber);
     }
-    if (isOutOfRange(date, min, max)) {
+    if (isOutOfRange(date, MAX, MIN)) {
       throw new Error(ERROR.OutOfRange);
     }
   }
@@ -101,6 +103,7 @@ class Controller {
     this.#viewOrder();
     this.#showOriginalPrice();
     this.#extraGift();
+    this.#checkDiscount();
   }
 
   #viewOrder() {
@@ -115,6 +118,44 @@ class Controller {
   #extraGift() {
     const extraGift = this.#orderMenu.getExtraGift(this.#originPrice);
     OutputView.printExtraGift(extraGift);
+  }
+
+  #checkDiscount() {
+    OutputView.print(MESSAGES.discount);
+    let discount;
+    if (this.#originPrice > 10000) {
+      discount = this.#orderMenu.discountPrice(
+        this.#rDate,
+        this.#rMenu,
+        this.#originPrice
+      );
+    }
+
+    if (discount.xmasDiscount != 0) {
+      OutputView.printDiscount(DISCOUNT_EVENT.xmas, discount.xmasDiscount);
+    }
+    if (discount.weekDiscount != 0) {
+      OutputView.printDiscount(DISCOUNT_EVENT.week, discount.weekDiscount);
+    }
+    if (discount.weekendDiscount != 0) {
+      OutputView.printDiscount(
+        DISCOUNT_EVENT.weekend,
+        discount.weekendDiscount
+      );
+    }
+    if (discount.specialDiscount != 0) {
+      OutputView.printDiscount(
+        DISCOUNT_EVENT.special,
+        discount.specialDiscount
+      );
+    }
+    if (discount.extraGiftDscount != 0) {
+      OutputView.printDiscount(DISCOUNT_EVENT.extra, discount.extraGiftDscount);
+    }
+
+    if (this.#totaldiscount == 0) {
+      OutputView.print(NOTHING);
+    }
   }
 }
 export default Controller;

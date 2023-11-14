@@ -1,5 +1,7 @@
 export const MIN = 1;
 export const MAX = 31;
+export const DEC_START = 4; // 금요일을 기준으로 12월 1일이 4일이다.
+export const DISCOUNT_AMOUNT = 2023;
 
 export const orderDate = (date) => {
   return `12월 ${date}일`;
