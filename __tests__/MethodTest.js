@@ -44,4 +44,33 @@ describe("기능 테스트", () => {
 
     expectLogContains(getOutput(logSpy), expected);
   });
+
+  test("증정 메뉴 증정 여부 확인 (증정)", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["<증정 메뉴>", "샴페인 1개"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
+  test("증정 메뉴 증정 여부 확인 (미증정)", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["3", "바비큐립-1,초코케이크-2,제로콜라-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["<증정 메뉴>", "없음"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
 });
