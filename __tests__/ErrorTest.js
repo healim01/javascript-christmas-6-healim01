@@ -109,4 +109,26 @@ describe("예외 테스트", () => {
       expect.stringContaining(INVALID_ORDER_MESSAGE)
     );
   });
+
+  test("중복 메뉴 주문시 예외 테스트", async () => {
+    // given
+    const INVALID_ORDER_MESSAGE =
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    const INPUTS_TO_END = ["티본스테이크-5"];
+    const logSpy = getLogSpy();
+    mockQuestions([
+      "7",
+      "제로콜라-3,양송이수프-4,양송이수프-3",
+      ...INPUTS_TO_END,
+    ]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(INVALID_ORDER_MESSAGE)
+    );
+  });
 });
