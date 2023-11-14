@@ -1,10 +1,6 @@
-import { all_menus } from "../constants/system.js";
+import { all_menus, extraGift, nothing } from "../constants/system.js";
 
 class OrderMenu {
-  formatPrice(price) {
-    return new Intl.NumberFormat("ko-KR", { style: "decimal" }).format(price);
-  }
-
   getOriginPrice(rMenu) {
     let sum = 0;
     for (const menuItem of rMenu) {
@@ -13,7 +9,14 @@ class OrderMenu {
         sum += foundMenu.price * menuItem.quantity;
       }
     }
-    return this.formatPrice(sum);
+    return sum;
+  }
+
+  getExtraGift(orginPrice) {
+    if (orginPrice >= 120000) {
+      return extraGift;
+    }
+    return nothing;
   }
 }
 export default OrderMenu;

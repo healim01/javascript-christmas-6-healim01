@@ -7,5 +7,6 @@ const MESSAGES = Object.freeze({
   startCheckOrder: "에 우테코 식당에서 받을 이벤트 혜택 미리 보기!",
   printMenu: "\n<주문 메뉴>",
   orginPrice: "\n<할인 전 총주문 금액>",
+  extraGift: "\n<증정 메뉴>",
 });
 export default MESSAGES;

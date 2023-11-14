@@ -28,6 +28,11 @@ const OutputView = {
     this.print(`${price}원`);
   },
 
+  printExtraGift(gift) {
+    this.print(MESSAGES.extraGift);
+    this.print(gift);
+  },
+
   error(error) {
     this.print(error);
   },

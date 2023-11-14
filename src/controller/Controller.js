@@ -21,11 +21,13 @@ class Controller {
   #rDate;
   #rMenu;
   #orderMenu;
+  #originPrice;
 
   constructor() {
     this.#rDate = 0;
     this.#rMenu = {};
     this.#orderMenu = new OrderMenu();
+    this.#originPrice = 0;
   }
   async start() {
     await this.#constomerInfo();
@@ -90,10 +92,15 @@ class Controller {
     }
   }
 
+  #formatPrice(price) {
+    return new Intl.NumberFormat("ko-KR", { style: "decimal" }).format(price);
+  }
+
   #checkOrder() {
     OutputView.startCheckOrder(this.#rDate);
     this.#viewOrder();
     this.#showOriginalPrice();
+    this.#extraGift();
   }
 
   #viewOrder() {
@@ -101,8 +108,13 @@ class Controller {
   }
 
   #showOriginalPrice() {
-    const originPrice = this.#orderMenu.getOriginPrice(this.#rMenu);
-    OutputView.printOriginPrice(originPrice);
+    this.#originPrice = this.#orderMenu.getOriginPrice(this.#rMenu);
+    OutputView.printOriginPrice(this.#formatPrice(this.#originPrice));
+  }
+
+  #extraGift() {
+    const extraGift = this.#orderMenu.getExtraGift(this.#originPrice);
+    OutputView.printExtraGift(extraGift);
   }
 }
 export default Controller;

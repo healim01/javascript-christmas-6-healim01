@@ -5,6 +5,9 @@ export const orderDate = (date) => {
   return `12월 ${date}일`;
 };
 
+export const extraGift = Object.freeze("샴페인 1개");
+export const nothing = Object.freeze("없음");
+
 export const appetizer_menu = Object.freeze([
   {
     name: "양송이수프",
