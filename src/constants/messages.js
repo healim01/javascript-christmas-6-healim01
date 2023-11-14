@@ -8,7 +8,7 @@ const MESSAGES = Object.freeze({
   printMenu: "\n<주문 메뉴>",
   orginPrice: "\n<할인 전 총주문 금액>",
   extraGift: "\n<증정 메뉴>",
-  discount: "\n<해택 내역>",
+  discount: "\n<혜택 내역>",
   totalDiscount: "\n<총혜택 금액>",
   totalPrice: "\n<할인 후 예상 결제 금액>",
   badge: "\n<12월 이벤트 배지>",
