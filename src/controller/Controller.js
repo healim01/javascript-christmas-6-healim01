@@ -11,6 +11,7 @@ import {
 } from "../utils/validator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
+import OrderMenu from "../model/OrderMenu";
 
 class Controller {
   #rDate;
@@ -22,6 +23,7 @@ class Controller {
   }
   async start() {
     this.#constomerInfo();
+    this.#checkOrder();
   }
 
   async #constomerInfo() {
@@ -80,6 +82,11 @@ class Controller {
     if (isAlreadyOrder(menu)) {
       throw new Error(ERROR.AlreadyOrder);
     }
+  }
+
+  #checkOrder() {
+    OutputView.startCheckOrder(this.#rDate);
+    OrderMenu.addOrder(this.#rDate, this.#rMenu);
   }
 }
 export default Controller;

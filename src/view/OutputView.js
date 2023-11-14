@@ -1,5 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import MESSAGES from "../constants/messages.js";
+import { orderDate } from "../constants/system.js";
 
 const OutputView = {
   print(message) {
@@ -13,6 +14,11 @@ const OutputView = {
 
   welcome() {
     this.print(MESSAGES.welcome);
+  },
+
+  startCheckOrder(date) {
+    const date = orderDate;
+    this.print(`${date}s${MESSAGES.startCheckOrder}`);
   },
 
   error(error) {

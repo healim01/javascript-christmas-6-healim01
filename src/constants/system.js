@@ -1,6 +1,10 @@
 export const min = 1;
 export const max = 31;
 
+export const orderDate = (date) => {
+  return `12월 ${date}일`;
+};
+
 export const appetizer_menu = Object.freeze([
   {
     name: "양송이수프",
