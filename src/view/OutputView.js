@@ -7,18 +7,20 @@ const OutputView = {
     Console.print(message);
   },
 
-  printMenu() {
-    Console.print("<주문 메뉴>");
-    // ...
-  },
-
   welcome() {
     this.print(MESSAGES.welcome);
   },
 
   startCheckOrder(date) {
-    const date = orderDate;
-    this.print(`${date}s${MESSAGES.startCheckOrder}`);
+    const rdate = orderDate(date);
+    this.print(`${rdate}${MESSAGES.startCheckOrder}`);
+  },
+
+  printMenu(menus) {
+    this.print(MESSAGES.printMenu);
+    menus.forEach((item) => {
+      this.print(`${item.name} ${item.quantity}개`);
+    });
   },
 
   error(error) {

@@ -1,5 +1,7 @@
+// constants
 import { ERROR } from "../constants/error.js";
 import { max, min } from "../constants/system.js";
+// utils
 import splitStringToArray from "../utils/splitStringtoArray.js";
 import {
   isOutOfRange,
@@ -9,20 +11,24 @@ import {
   isAlreadyOrder,
   isNumber,
 } from "../utils/validator.js";
+// View
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import OrderMenu from "../model/OrderMenu";
+// Model
+import OrderMenu from "../model/OrderMenu.js";
 
 class Controller {
   #rDate;
   #rMenu;
+  #orderMenu;
 
   constructor() {
     this.#rDate = 0;
     this.#rMenu = {};
+    this.#orderMenu = new OrderMenu();
   }
   async start() {
-    this.#constomerInfo();
+    await this.#constomerInfo();
     this.#checkOrder();
   }
 
@@ -86,7 +92,11 @@ class Controller {
 
   #checkOrder() {
     OutputView.startCheckOrder(this.#rDate);
-    OrderMenu.addOrder(this.#rDate, this.#rMenu);
+    this.#viewOrder();
+  }
+
+  #viewOrder() {
+    OutputView.printMenu(this.#rMenu);
   }
 }
 export default Controller;
