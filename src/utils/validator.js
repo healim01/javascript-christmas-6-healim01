@@ -14,10 +14,21 @@ const all_menus = [
 
 export const isOutOfRange = (value, min, max) => value < min || value > max;
 
-export const isOnMenu = (menu) => {
-  for (const menuName in menu) {
-    if (all_menus.find((item) => item.name === menuName) === undefined) {
+export const isOnMenu = (menuItems) => {
+  for (const menuItem of menuItems) {
+    if (!all_menus.some((item) => item.name === menuItem.name)) {
       return false;
     }
   }
+
+  return true;
+};
+
+export const isAllDrink = (menuItems) => {
+  for (const menuItem of menuItems) {
+    if (!drink_menu.some((item) => item.name === menuItem.name)) {
+      return false;
+    }
+  }
+  return true;
 };

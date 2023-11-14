@@ -1,7 +1,7 @@
 import { ERROR } from "../constants/error.js";
 import { max, min } from "../constants/system.js";
 import splitStringToArray from "../utils/splitStringtoArray.js";
-import { isOutOfRange, isOnMenu } from "../utils/validator.js";
+import { isOutOfRange, isOnMenu, isAllDrink } from "../utils/validator.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 
@@ -60,6 +60,9 @@ class Controller {
   #validateMenu(menu) {
     if (!isOnMenu(menu)) {
       throw new Error(ERROR.InvalidMenu);
+    }
+    if (isAllDrink(menu)) {
+      throw new Error(ERROR.AllDrink);
     }
   }
 }

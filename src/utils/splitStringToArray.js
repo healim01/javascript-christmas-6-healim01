@@ -1,12 +1,12 @@
 const splitStringToArray = (input) => {
-  let menu = {};
   let items = input.split(",");
+  let menuItems = [];
 
   items.forEach((item) => {
-    let [menuName, quantity] = item.split("-");
-    menu[menuName] = parseInt(quantity);
+    let [name, quantity] = item.split("-");
+    menuItems.push({ name, quantity: parseInt(quantity) });
   });
 
-  return menu;
+  return menuItems;
 };
 export default splitStringToArray;
