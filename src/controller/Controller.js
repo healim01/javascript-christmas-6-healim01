@@ -105,6 +105,7 @@ class Controller {
     this.#extraGift();
     this.#checkDiscount();
     this.#showTotalDiscountPrice();
+    this.#printTotalPrice();
   }
 
   #viewOrder() {
@@ -141,7 +142,7 @@ class Controller {
     );
 
     if (discount.extraGiftDscount != 0) {
-      this.#originPrice -= discount.extraGiftDscount;
+      this.#originPrice += discount.extraGiftDscount;
     }
 
     if (this.#totaldiscount == 0) {
@@ -175,6 +176,11 @@ class Controller {
 
   #showTotalDiscountPrice() {
     OutputView.printTotalDiscount(this.#formatPrice(this.#totaldiscount));
+  }
+
+  #printTotalPrice() {
+    const totalPrice = this.#originPrice - this.#totaldiscount;
+    OutputView.printTotalPrice(this.#formatPrice(totalPrice));
   }
 }
 export default Controller;

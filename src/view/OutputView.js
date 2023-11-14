@@ -42,6 +42,11 @@ const OutputView = {
     this.print(`-${price}원`);
   },
 
+  printTotalPrice(price) {
+    this.print(MESSAGES.totalPrice);
+    this.print(`${price}원`);
+  },
+
   error(error) {
     this.print(error);
   },
