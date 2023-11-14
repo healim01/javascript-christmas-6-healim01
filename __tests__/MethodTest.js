@@ -73,4 +73,19 @@ describe("기능 테스트", () => {
 
     expectLogContains(getOutput(logSpy), expected);
   });
+
+  test("크리스마스 할인 여부 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["10", "바비큐립-1,초코케이크-2,제로콜라-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["-1,900원"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
 });
