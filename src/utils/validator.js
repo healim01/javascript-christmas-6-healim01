@@ -54,3 +54,11 @@ export const isAlreadyOrder = (menuItems) => {
 
   return false;
 };
+
+export const isValidInput = (items) => {
+  for (const item of items) {
+    if (!item.includes("-")) return false;
+  }
+  console.log("true");
+  return true;
+};
