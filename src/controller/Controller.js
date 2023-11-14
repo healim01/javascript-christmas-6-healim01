@@ -93,10 +93,16 @@ class Controller {
   #checkOrder() {
     OutputView.startCheckOrder(this.#rDate);
     this.#viewOrder();
+    this.#showOriginalPrice();
   }
 
   #viewOrder() {
     OutputView.printMenu(this.#rMenu);
+  }
+
+  #showOriginalPrice() {
+    const originPrice = this.#orderMenu.getOriginPrice(this.#rMenu);
+    OutputView.printOriginPrice(originPrice);
   }
 }
 export default Controller;

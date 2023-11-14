@@ -23,6 +23,11 @@ const OutputView = {
     });
   },
 
+  printOriginPrice(price) {
+    this.print(MESSAGES.orginPrice);
+    this.print(`${price}원`);
+  },
+
   error(error) {
     this.print(error);
   },
