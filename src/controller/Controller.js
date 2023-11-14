@@ -178,7 +178,7 @@ class Controller {
 
   #showTotalDiscountPrice() {
     OutputView.printPrice(
-      MESSAGES.discount,
+      MESSAGES.totalDiscount,
       this.#formatPrice(this.#totaldiscount)
     );
   }
