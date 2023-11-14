@@ -188,4 +188,33 @@ describe("기능 테스트", () => {
 
     expectLogContains(getOutput(logSpy), expected);
   });
+  test("배지 증정 여부 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["<12월 이벤트 배지>", "산타"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
+
+  test("배지 증정 여부 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["15", "티본스테이크-2"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["<12월 이벤트 배지>", "별"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
 });
