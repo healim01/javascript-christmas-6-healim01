@@ -66,7 +66,7 @@ describe("예외 테스트", () => {
     );
   });
 
-  test("음료만 주문시 예외 테스트", async () => {
+  test("음식 20개 초과 주문시 예외 테스트", async () => {
     // given
     const INVALID_ORDER_MESSAGE =
       "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다. 다시 입력해 주세요.";
@@ -75,6 +75,28 @@ describe("예외 테스트", () => {
     mockQuestions([
       "3",
       "제로콜라-3,양송이수프-4,양송이수프-7,크리스마스파스타-7",
+      ...INPUTS_TO_END,
+    ]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(INVALID_ORDER_MESSAGE)
+    );
+  });
+
+  test("없는 메뉴 주문시 예외 테스트", async () => {
+    // given
+    const INVALID_ORDER_MESSAGE =
+      "[ERROR] 유효하지 않은 메뉴입니다. 다시 입력해 주세요.";
+    const INPUTS_TO_END = ["티본스테이크-5"];
+    const logSpy = getLogSpy();
+    mockQuestions([
+      "7",
+      "제로콜라-3,양송이수프-4,불고기피자-3",
       ...INPUTS_TO_END,
     ]);
 
