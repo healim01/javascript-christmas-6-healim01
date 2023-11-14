@@ -173,4 +173,19 @@ describe("기능 테스트", () => {
 
     expectLogContains(getOutput(logSpy), expected);
   });
+
+  test("예상 결제 금액 일치 확인", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["<할인 전 총주문 금액>", "142,000원"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
 });
